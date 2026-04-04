@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saakash Sathyan — Aerospace Engineering Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0f1e;
+      --surface: #111827;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --text: #e8edf5;
+      --muted: #7a8499;
+      --accent: #60a5fa;
+      --accent-dim: rgba(96,165,250,0.08);
+      --accent-border: rgba(96,165,250,0.25);
+      --tag-bg: rgba(255,255,255,0.05);
+      --serif: 'Fraunces', Georgia, serif;
+      --mono: 'DM Mono', 'Courier New', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container { max-width: 880px; margin: 0 auto; padding: 0 2rem; }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      background: rgba(10,15,30,0.88);
+      padding: 1.1rem 0;
+    }
+    nav .inner {
+      max-width: 880px; margin: 0 auto; padding: 0 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.05rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero { padding: 8rem 0 5rem; border-bottom: 1px solid var(--border); }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: '//  '; }
+    .hero h1 {
+      font-family: var(--serif); font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 300; line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 1.5rem; color: var(--text);
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { color: var(--muted); max-width: 540px; font-size: 14px; line-height: 1.9; margin-bottom: 2.5rem; }
+    .hero-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 0.6rem 1.2rem; border-radius: 4px;
+      font-family: var(--mono); font-size: 13px; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #0a0f1e; font-weight: 500; }
+    .btn-primary:hover { background: #93c5fd; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
+
+    .section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    @media (max-width: 600px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    .project-card {
+      background: var(--bg); padding: 2rem;
+      transition: background 0.2s; display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover { background: var(--surface); }
+
+    .project-number { font-size: 11px; color: var(--muted); margin-bottom: 1.2rem; letter-spacing: 0.06em; }
+    .project-title {
+      font-family: var(--serif); font-size: 1.2rem; font-weight: 300;
+      line-height: 1.3; margin-bottom: 0.75rem; color: var(--text);
+    }
+    .project-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 1.5rem; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+    .tag {
+      font-size: 11px; padding: 3px 8px; border-radius: 2px;
+      background: var(--tag-bg); color: var(--muted); border: 1px solid var(--border);
+      letter-spacing: 0.04em;
+    }
+    .project-footer { display: flex; gap: 1rem; }
+    .project-link { font-size: 12px; color: var(--accent); text-decoration: none; display: flex; align-items: center; gap: 4px; }
+    .project-link:hover { text-decoration: underline; }
+    .project-link.dim { color: var(--muted); }
+    .project-link.dim:hover { color: var(--text); }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+      background: var(--accent-dim);
+      border-bottom: 1px solid var(--accent-border);
+      flex-direction: row; gap: 3rem; align-items: flex-start;
+    }
+    @media (max-width: 600px) { .project-card.featured { flex-direction: column; gap: 1.5rem; grid-column: auto; } }
+    .featured-badge {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid var(--accent-border);
+      padding: 3px 8px; border-radius: 2px; display: inline-block; margin-bottom: 1rem;
+    }
+    .project-card.featured .project-title { font-size: 1.55rem; }
+    .featured-main { flex: 1; }
+    .featured-meta { min-width: 170px; }
+    .meta-row { display: flex; flex-direction: column; gap: 1.2rem; }
+    .meta-item label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
+    .meta-item span { font-size: 13px; color: var(--text); }
+
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
+    @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-bio { color: var(--muted); line-height: 1.9; }
+    .about-bio p + p { margin-top: 1rem; }
+
+    .skills-list { list-style: none; }
+    .skills-list li {
+      padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
+      display: flex; justify-content: space-between; gap: 1rem;
+    }
+    .skills-list li:first-child { border-top: 1px solid var(--border); }
+    .skills-list li span { color: var(--text); text-align: right; }
+
+    .edu-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .edu-item { background: var(--bg); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; flex-wrap: wrap; transition: background 0.2s; }
+    .edu-item:hover { background: var(--surface); }
+    .edu-school { font-family: var(--serif); font-size: 1.05rem; font-weight: 300; color: var(--text); margin-bottom: 4px; }
+    .edu-degree { font-size: 13px; color: var(--muted); }
+    .edu-year { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    .contact-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    footer { padding: 2rem 0; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+    footer .inner { max-width: 880px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .hero > * { animation: fadeUp 0.6s ease both; }
+    .hero .hero-eyebrow { animation-delay: 0.05s; }
+    .hero h1 { animation-delay: 0.15s; }
+    .hero .hero-sub { animation-delay: 0.25s; }
+    .hero .hero-links { animation-delay: 0.35s; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="inner">
+    <a href="#" class="nav-logo">Saakash Sathyan</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Aerospace Engineering Portfolio</p>
+    <h1>Designing systems<br>that <em>leave the ground.</em></h1>
+    <p class="hero-sub">
+      Aerospace Engineering student at UC Irvine with hands-on experience in mechanical
+      design, CAD modeling, and system integration — from autonomous rovers to
+      aerodynamic components.
+    </p>
+    <div class="hero-links">
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="https://github.com/saakashsathyan" class="btn btn-ghost" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/saakashsathyan" class="btn btn-ghost" target="_blank">LinkedIn</a>
+      <a href="resume.pdf" class="btn btn-ghost" download>Resume PDF</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="container">
+    <p class="section-label">Selected Projects</p>
+    <div class="projects-grid">
+
+      <a href="https://github.com/saakashsathyan/mars-rover" class="project-card featured" target="_blank">
+        <div class="featured-main">
+          <span class="featured-badge">Active</span>
+          <h2 class="project-title">SEDS @ UCI Autonomous Mars Rover</h2>
+          <p class="project-desc">
+            Designing and fabricating the mechanical subsystem of an autonomous Mars rover
+            as part of UCI's SEDS chapter. Work spans structural design, component integration,
+            and cross-disciplinary coordination with electrical and software subteams to ensure
+            full system compatibility. CAD developed in OnShape with close attention to material
+            selection, tolerancing, and design review processes.
+          </p>
+          <div class="project-tags">
+            <span class="tag">OnShape</span>
+            <span class="tag">Mechanical Design</span>
+            <span class="tag">System Integration</span>
+            <span class="tag">Fabrication</span>
+            <span class="tag">Design Review</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-link">GitHub →</span>
+          </div>
+        </div>
+        <div class="featured-meta">
+          <div class="meta-row">
+            <div class="meta-item"><label>Status</label><span>In Progress</span></div>
+            <div class="meta-item"><label>Since</label><span>Nov 2025</span></div>
+            <div class="meta-item"><label>Type</label><span>Hardware</span></div>
+            <div class="meta-item"><label>Team</label><span>Fabrication Subteam</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://github.com/saakashsathyan/custom-spoiler" class="project-card" target="_blank">
+        <p class="project-number">01</p>
+        <h2 class="project-title">Custom Automotive Spoiler Design</h2>
+        <p class="project-desc">
+          Designing a custom vehicle spoiler in SolidWorks, balancing aesthetic integration,
+          structural integrity, and aerodynamic performance. Iterative CAD drives geometry
+          refinement while material and fabrication evaluation keeps the design practical
+          for low-cost prototype production.
+        </p>
+        <div class="project-tags">
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Aerodynamics</span>
+          <span class="tag">Parametric CAD</span>
+          <span class="tag">Fabrication Planning</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">GitHub →</span>
+          <span class="project-link dim">In Progress</span>
+        </div>
+      </a>
+
+      <!-- Placeholder 1 -->
+      <a href="https://github.com/saakashsathyan" class="project-card" target="_blank">
+        <p class="project-number">02</p>
+        <h2 class="project-title">Your Next Project</h2>
+        <p class="project-desc">
+          Add your next project here — class work, personal builds, competition entries.
+          Describe the problem, your approach, and any measurable result.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Tag 1</span>
+          <span class="tag">Tag 2</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">GitHub →</span>
+        </div>
+      </a>
+
+      <!-- Placeholder 2 -->
+      <a href="https://github.com/saakashsathyan" class="project-card" target="_blank">
+        <p class="project-number">03</p>
+        <h2 class="project-title">Your Next Project</h2>
+        <p class="project-desc">
+          Add your next project here. As you complete coursework in aerodynamics, structures,
+          and fluids, document those projects and link them from this card.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Tag 1</span>
+          <span class="tag">Tag 2</span>
+        </div>
+        <div class="project-footer">
+          <span class="project-link">GitHub →</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>
+          I'm Saakash Sathyan, an Aerospace Engineering student at UC Irvine graduating
+          June 2027. My focus is mechanical design and system integration — I'm most at home
+          working at the intersection of CAD, fabrication, and cross-disciplinary teams.
+        </p>
+        <p>
+          I'm currently on the fabrication subteam for SEDS @ UCI's autonomous Mars rover,
+          and serving as Financial Director for AIAA @ UCI — a role that's given me real
+          exposure to program management, sponsorship acquisition, and organizational strategy
+          alongside the engineering work.
+        </p>
+        <p>
+          I work across the full design cycle: from early concept and CAD through design
+          reviews, material selection, and physical fabrication. I'm a U.S. citizen actively
+          looking for internship and co-op opportunities in aerospace and mechanical engineering.
+        </p>
+      </div>
+      <ul class="skills-list">
+        <li>SolidWorks / OnShape / Fusion 360 <span>Advanced</span></li>
+        <li>Parametric Modeling &amp; GD&amp;T <span>Proficient</span></li>
+        <li>MATLAB / Python <span>Proficient</span></li>
+        <li>FDM 3D Printing <span>Proficient</span></li>
+        <li>C++ / RobotC <span>Intermediate</span></li>
+        <li>Aerodynamic Analysis <span>Intermediate</span></li>
+        <li>Hand &amp; Power Tools <span>Proficient</span></li>
+        <li>Technical Documentation <span>Strong</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education">
+  <div class="container">
+    <p class="section-label">Education</p>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <p class="edu-school">University of California, Irvine</p>
+          <p class="edu-degree">B.S. Aerospace Engineering · Dynamics, Fluid Dynamics I–III, Aerodynamics, Astronautics, Structures</p>
+        </div>
+        <span class="edu-year">Expected June 2027</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <p class="edu-school">Folsom Lake College</p>
+          <p class="edu-degree">Non-Degree · Structured Programming, Engineering Graphics, Statics</p>
+        </div>
+        <span class="edu-year">2024 – 2025</span>
+      </div>
+      <div class="edu-item">
+        <div>
+          <p class="edu-school">Embry-Riddle Aeronautical University – Prescott</p>
+          <p class="edu-degree">Non-Degree · Engineering Economics, Computing for Engineers, Technical Report Writing</p>
+        </div>
+        <span class="edu-year">2023 – 2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container">
+    <p class="section-label">Get in Touch</p>
+    <p style="color:var(--muted); max-width:480px; margin-bottom:2rem; line-height:1.9;">
+      I'm looking for internship and co-op opportunities in aerospace and mechanical
+      engineering. Feel free to reach out — I reply within a day.
+    </p>
+    <div class="contact-row">
+      <a href="mailto:saakashsathyan.ae@gmail.com" class="btn btn-primary">saakashsathyan.ae@gmail.com →</a>
+      <a href="https://linkedin.com/in/saakashsathyan" class="btn btn-ghost" target="_blank">LinkedIn</a>
+      <a href="https://github.com/saakashsathyan" class="btn btn-ghost" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <span>© 2025 Saakash Sathyan</span>
+    <span>Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
