@@ -1,2 +1,5 @@
 # saakashsathyan.github.io
-Saakash Sathyan's Engineering Portfolio
+
+Personal engineering portfolio — built with HTML/CSS, hosted on GitHub Pages.
+
+Live site: https://saakashsathyan.github.io
