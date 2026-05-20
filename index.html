@@ -133,6 +133,9 @@
 
     .project-card.full-width {
       grid-column: 1 / -1;
+      flex-direction: row;
+      gap: 3rem;
+      align-items: flex-start;
     }
     
     .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
@@ -243,23 +246,33 @@
       </a> 
 
       <a href="https://github.com/saakashsathyan/mars-rover" class="project-card full-width" target="_blank">
-        <p class="project-number">01</p>
-        <h2 class="project-title">SEDS @ UCI Autonomous Mars Rover</h2>
-        <p class="project-desc">
-          Designing and fabricating the mechanical subsystem of an autonomous Mars rover
-          as part of UCI's SEDS chapter. Work spans structural design, component integration,
-          and cross-disciplinary coordination with electrical and software subteams.
-          CAD developed in OnShape and SolidWorks.
-        </p>
-        <div class="project-tags">
-          <span class="tag">OnShape</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">Mechanical Design</span>
-          <span class="tag">System Integration</span>
-          <span class="tag">Fabrication</span>
+        <div class="featured-main">
+          <p class="project-number">01</p>
+          <h2 class="project-title">SEDS @ UCI Autonomous Mars Rover</h2>
+          <p class="project-desc">
+            Designing and fabricating the mechanical subsystem of an autonomous Mars rover
+            as part of UCI's SEDS chapter. Work spans structural design, component integration,
+            and cross-disciplinary coordination with electrical and software subteams.
+            CAD developed in OnShape and SolidWorks.
+          </p>
+          <div class="project-tags">
+            <span class="tag">OnShape</span>
+            <span class="tag">SolidWorks</span>
+            <span class="tag">Mechanical Design</span>
+            <span class="tag">System Integration</span>
+            <span class="tag">Fabrication</span>
+          </div>
+          <div class="project-footer">
+            <span class="project-link">GitHub →</span>
+          </div>
         </div>
-        <div class="project-footer">
-          <span class="project-link">GitHub →</span>
+        <div class="featured-meta">
+          <div class="meta-row">
+            <div class="meta-item"><label>Status</label><span>In Progress</span></div>
+            <div class="meta-item"><label>Since</label><span>Nov 2025</span></div>
+            <div class="meta-item"><label>Type</label><span>Hardware</span></div>
+            <div class="meta-item"><label>Role</label><span>Fabrication Subteam</span></div>
+          </div>
         </div>
       </a>
 
