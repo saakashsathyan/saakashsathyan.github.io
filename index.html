@@ -131,6 +131,12 @@
     .meta-item label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
     .meta-item span { font-size: 13px; color: var(--text); }
 
+    .project-card.full-width {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      gap: 0;
+    }
+    
     .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; }
     @media (max-width: 600px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
     .about-bio { color: var(--muted); line-height: 1.9; }
@@ -238,7 +244,7 @@
         </div>
       </a> 
 
-      <a href="https://github.com/saakashsathyan/mars-rover" class="project-card" target="_blank">
+      <a href="https://github.com/saakashsathyan/mars-rover" class="project-card full-width" target="_blank">
         <p class="project-number">01</p>
         <h2 class="project-title">SEDS @ UCI Autonomous Mars Rover</h2>
         <p class="project-desc">
